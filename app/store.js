@@ -2,7 +2,9 @@ import List from "./Models/List.js";
 
 let _state = {
   /** @type {List[]} */
-  lists: []
+  lists: [],
+  
+  
 };
 
 //NOTE You should not need to change the code from this point down
@@ -18,6 +20,32 @@ function _loadState() {
 _loadState();
 
 class Store {
+  deleteTask(itemId, tasktoRemove) {
+    let indextoRemove = _state.lists.findIndex(item => item.id == itemId);
+    if(indextoRemove < 0){
+      console.log('Not Working')
+    }
+    _state.lists[indextoRemove].tasks.splice(tasktoRemove, 1)
+    this.saveState()
+  }
+  deleteItem(itemId) {
+    let indextoRemove = _state.lists.findIndex(item => item.id == itemId);
+    if(indextoRemove < 0){
+      console.log('Not Working')
+    }
+    _state.lists.splice(indextoRemove, 1)
+    this.saveState()
+  }
+  addTask(newTask, indextoAdd) {
+    _state.lists[indextoAdd].tasks.push(newTask)
+    console.log(_state.lists)
+    this.saveState()
+  }
+  addList(newList) {
+    _state.lists.push(newList)
+    console.log(_state.lists)
+    this.saveState()
+  }
   /**
    * Provides access to application state data
    */

@@ -13,6 +13,26 @@
   </head>
 
   <body>
+   <h1 class="text-center">Task Creator</h1>
+   <div class="container">
+   <form onsubmit="app.listController.addList(event)">
+    <div class="form-group">
+      <label for="title">Create List</label>
+      <input type="text" name="title" class="form-control" placeholder="List Name" >
+    </div>
+  </form>
+  </div>
+
+  
+
+
+
+
+
+
+  <div id="list" class="row m-3 justify-content-center">
+  </div>
+    
     <script src="app/main.js" type="module"></script>
   </body>
 </html>
