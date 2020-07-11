@@ -1,6 +1,7 @@
 import ListService from "../Services/ListService.js";
 import _store from "../store.js"
 import List from "../Models/List.js";
+import store from "../store.js";
 
 //TODO Don't forget to render to the screen after every data change.
 function _drawLists() {
@@ -13,6 +14,17 @@ function _drawLists() {
   // items.forEach(item => template += item.Template)
   document.getElementById("list").innerHTML = template
 }
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+
+
+
 
 // function _drawTasks(itemId) {
 //   let template = ""
@@ -30,6 +42,10 @@ export default class ListController {
   }
 
   //TODO: Your app will need the ability to create, and delete both lists and listItems
+  check(itemID, tasktoCheck){
+   _store.check(itemID, tasktoCheck);  
+  }
+
 
   addList(event){
     event.preventDefault()
@@ -41,6 +57,7 @@ export default class ListController {
     ListService.addList(rawlistData)
     listData.reset()
     _drawLists(); 
+    console.log(_store.State.lists)
   }
 
   addTask(event, itemId){
@@ -60,12 +77,71 @@ export default class ListController {
   }
 
   deleteItem(itemId){
-    ListService.deleteItem(itemId)
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "This will be... FOREVER!!!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        ListService.deleteItem(itemId)
+        _drawLists()
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your list is gone forever. ',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your list lives on!',
+          'error'
+        )
+      }
+    })
+
+    
+    
     _drawLists()
+    
   }
 
   deleteTask(itemId, tasktoRemove){
-    ListService.deleteTask(itemId, tasktoRemove)
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "This will be FOREVER!!!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        ListService.deleteTask(itemId, tasktoRemove)
+        _drawLists()
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your task is gone... FOREVER! ',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your task lives on!',
+          'error'
+        )
+      }
+    })
+    
     _drawLists()
   }
 

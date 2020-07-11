@@ -8,16 +8,20 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/style.css" />
     <title>TaskMaster</title>
   </head>
 
   <body>
-   <h1 class="text-center">Task Creator</h1>
-   <div class="container">
+    <nav class="navbar sticky-top bg-purp text-warning justify-content-center">
+   <h1 class="text-center text-main">Task Creator</h1>
+   </nav>
+   <div class="container pt-5">
    <form onsubmit="app.listController.addList(event)">
     <div class="form-group">
-      <label for="title">Create List</label>
+      <label for="title"><h3 class="text-main bg-purp rounded p-2 pl-3 pr-3">Create List</h3></label>
       <input type="text" name="title" class="form-control" placeholder="List Name" >
     </div>
   </form>
@@ -32,7 +36,12 @@
 
   <div id="list" class="row m-3 justify-content-center">
   </div>
-    
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="app/main.js" type="module"></script>
   </body>
 </html>

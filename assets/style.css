@@ -1,0 +1,46 @@
+body {
+ background-image: url("https://www.publicdomainpictures.net/pictures/40000/velka/retro-circles-background.jpg");
+ background-size: cover;
+ background-repeat: no-repeat;
+ height:15%;
+}
+
+.close{
+  color: rgb(206, 36, 36);
+  opacity: 1;
+  font-size: 5vh;
+}
+
+.bg-purp{
+  background-color: #795C5F;
+}
+
+.bg-blue{
+  background-color: #729EA1;
+}
+.bg-green{
+  background-color: #13505B;
+}
+.bg-pink{
+  background-color: #EF9CDA;
+}
+.bg-lav{
+  background-color: #CFBAE1;
+}
+
+.text-main{
+  color: #FADF7F;
+}
+
+.bg-sec{
+  background-color: #D9B26F;
+}
+
+.text-sec{
+  color: #005377;
+}
+
+
+.checked{
+  filter: drop-shadow(2px 4px 6px #ff0000) contrast(0);
+}

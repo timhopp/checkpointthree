@@ -11,3 +11,21 @@ export const generateId = function() {
   }
   return result;
 };
+
+export const bgColor = function(){
+  let bg = (Math.floor(Math.random() * 5));
+  let result = "";
+  switch(bg){
+    case 0 : result = "bg-purp";
+    break;
+    case 1 : result = "bg-blue";
+    break;
+    case 2 : result = "bg-green";
+    break;;
+    case 3 : result = "bg-pink";
+    break;
+    case 4 : result = "bg-lav";
+    break;
+  }
+  return result;
+}

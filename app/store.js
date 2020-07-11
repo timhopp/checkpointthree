@@ -9,6 +9,7 @@ let _state = {
 
 //NOTE You should not need to change the code from this point down
 
+
 //NOTE this method will get the lists from local storage at the start of the app
 function _loadState() {
   let data = JSON.parse(localStorage.getItem("TaskMaster"));
@@ -20,6 +21,12 @@ function _loadState() {
 _loadState();
 
 class Store {
+  check(itemID, tasktoCheck) {
+    let indextoCheck = _state.lists.findIndex(item => item.id == itemID )
+    _state.lists[indextoCheck].tasks[tasktoCheck] = 'Done'
+    console.log(_state.lists[indextoCheck])
+    }
+  
   deleteTask(itemId, tasktoRemove) {
     let indextoRemove = _state.lists.findIndex(item => item.id == itemId);
     if(indextoRemove < 0){
